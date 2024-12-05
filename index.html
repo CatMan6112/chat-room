@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title> MemeChat 2.0 </title>
-    <!-- Google fonts. -->
-    <link href='https://fonts.googleapis.com/css?family=Bungee Outline' rel='stylesheet'/>
-    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'/>
-    <!-- Use font awesome icons. -->
-    <script src="https://kit.fontawesome.com/0fcf97b224.js" crossorigin="anonymous"></script>
-    <!-- Use firebase app and database. -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IP Lock</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #333;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    #access-message {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="access-message">
+    <h1>Checking Access...</h1>
+    <p>Please wait while we verify your IP.</p>
+  </div>
 
-    <!-- The CSS and JS file must be declared after the things above-->
-    <link rel="stylesheet" href="index.css"/>
-    <script type="text/javascript" src="index.js"></script>
+  <script>
+    // List of allowed IP addresses
+    const allowedIPs = [
+      "96.35.15.36", // Replace with real IPs
+      ""
+    ];
 
-  </head>
-  <body>
-  </body>
+    // Redirect URL for unauthorized users
+    const redirectURL = "https://example.com/no-access";
+
+    // Function to check the user's IP
+    async function checkIP() {
+      try {
+        // Fetch the user's public IP
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        const userIP = data.ip;
+
+        console.log("Your IP Address:", userIP); // For debugging
+
+        // Check if the IP is in the allowed list
+        if (allowedIPs.includes(userIP)) {
+          document.getElementById("access-message").innerHTML = `
+            <meta http-equiv="refresh" content="0;url=true-index.html">
+          `;
+        } else {
+          // Redirect if IP is not allowed
+          window.location.href = redirectURL;
+        }
+      } catch (error) {
+        console.error("Error fetching IP:", error);
+        document.getElementById("access-message").innerHTML = `
+          <h1>Error</h1>
+          <p>Unable to verify your IP. Please try again later.</p>
+        `;
+      }
+    }
+
+    // Run the IP check
+    checkIP();
+  </script>
+</body>
 </html>
