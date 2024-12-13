@@ -16,10 +16,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
   // This is very IMPORTANT!! We're going to use "db" a lot.
   var db = firebase.database()
-  const encodedKey = "c2stcHJvai1OQjM2VDI2RzJqQVJUU2Zxd2g0eDFVaDd0V180bDE4SEVUWjRGZzlMcTdadFFxbXdHeExXdWxleTFPWTA4ZDdYYmFUZkJsLUtoNVQzQmxia0ZKeGZzcHNkU0tDUkFwZ2RONlc4SnN2Rndnc3VPZE1OSXhzRnRxazBMSG9FcDN1bXhPYVFFMmpLdHJleUFFQWxBRnp3aVJyMzRJZ0E=";
-  const openaiApiKey = atob(encodedKey);
-  
-
+  const encryptedKey = "c2stcHJvai1JVEIwaXBrTmpTZzRCYkd5eUhpUVU3aGNodC1oYVV2MGJtZ05Ob1VYZkxKTEVJSDIzZF9RLTh5UkZZamxmb3U1bndjYVlzTGNVV1QzQmxia0ZKYUUxamlQSDhVWks4YURlOXZfUFRFdThRZW9wOERXYkpJZlUtY1dnR2REYmJqQUJQWDFxOVFKeVBfV3BFMzlpeDI5UjZZejVId0E=";
+  const openaiApiKey = atob(encryptedKey);
   async function moderateContent(input) {
     try {
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
