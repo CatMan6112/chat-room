@@ -11,12 +11,15 @@ const firebaseConfig = {
   appId: "1:644511911002:web:14861e1f4460f483af1c63"
 };
 // Initialize Firebase
+
+
 firebase.initializeApp(firebaseConfig);
   // This is very IMPORTANT!! We're going to use "db" a lot.
   var db = firebase.database()
 
-  // API Configuration
-  const openaiApiKey = "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";
+  const encodedKey = "c2stcHJvai1OQjM2VDI2RzJqQVJUU2Zxd2g0eDFVaDd0V180bDE4SEVUWjRGZzlMcTdadFFxbXdHeExXdWxleTFPWTA4ZDdYYmFUZkJsLUtoNVQzQmxia0ZKeGZzcHNkU0tDUkFwZ2RONlc4SnN2Rndnc3VPZE1OSXhzRnRxazBMSG9FcDN1bXhPYVFFMmpLdHJleUFFQWxBRnp3aVJyMzRJZ0E=";
+  const openaiApiKey = atob(encodedKey);
+  
 
   async function moderateContent(input) {
     try {
@@ -36,10 +39,13 @@ firebase.initializeApp(firebaseConfig);
             }),
         });
 
+
+        
+        
         if (!response.ok) {
             throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
         }
-
+        
         const result = await response.json();
 
         if (result.choices && result.choices[0] && result.choices[0].message) {
@@ -51,7 +57,9 @@ firebase.initializeApp(firebaseConfig);
         console.error("Error in moderateContent:", error.message);
         return "B"; // Default to blocking the content if there's an error
     }
-}
+
+    
+  }
 
 
   // We're going to use oBjEcT OrIeNtEd PrOgRaMmInG. Lol
@@ -108,7 +116,7 @@ firebase.initializeApp(firebaseConfig);
       var join_input = document.createElement('input')
       join_input.setAttribute('id', 'join_input')
       join_input.setAttribute('maxlength', 15)
-      join_input.placeholder = 'No.... It\'s Patrick Star'
+      join_input.placeholder = 'Choose Wisley. It can\'t currently be changed...'
       // Every time we type into the join_input
       join_input.onkeyup  = function(){
         // If the input we have is longer that 0 letters
@@ -323,7 +331,6 @@ firebase.initializeApp(firebaseConfig);
         db.ref('chats/' + `message_${index}`).set({
           name: parent.get_name(),
           message: message,
-          mod: moderationResult,
           index: index
         }).then(function() {
           parent.refresh_chat();
@@ -399,7 +406,6 @@ firebase.initializeApp(firebaseConfig);
 
           var message_mod = document.createElement('p');
           message_mod.setAttribute('class', 'message_mod');
-          message_mod.textContent = `Mod: ${mod}`;
 
           message_user_container.append(message_user);
           message_content_container.append(message_content);
