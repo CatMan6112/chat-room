@@ -258,9 +258,6 @@ firebase.initializeApp(firebaseConfig);
       }
 
       var cooldown_text = document.createElement('p');
-      cooldown_text.setAttribute('id', 'cooldown_text');
-      cooldown_text.style.display = 'none';
-      cooldown_text.textContent = '30 Second Cooldown';
 
       chat_input.onkeyup = function() {
         if (chat_input.value.length > 0) {
