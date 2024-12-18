@@ -3,8 +3,8 @@
 window.onload = function() {
   // Your web app's Firebase configuration
 const firebaseConfig = {
-  // re-add a to front of api key. captial
-  apiKey: "IzaSyC9yCyoKVOunVeq1fwPNW8gPXvVw2724BA",
+  
+  apiKey: "AIzaSyC9yCyoKVOunVeq1fwPNW8gPXvVw2724BA",
   authDomain: "cat-chatroom.firebaseapp.com",
   projectId: "cat-chatroom",
   storageBucket: "cat-chatroom.firebasestorage.app",
@@ -17,7 +17,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
   // This is very IMPORTANT!! We're going to use "db" a lot.
   var db = firebase.database()
-  const encryptedKey = "c2stcHJvai1JVEIwaXBrTmpTZzRCYkd5eUhpUVU3aGNodC1oYVV2MGJtZ05Ob1VYZkxKTEVJSDIzZF9RLTh5UkZZamxmb3U1bndjYVlzTGNVV1QzQmxia0ZKYUUxamlQSDhVWks4YURlOXZfUFRFdThRZW9wOERXYkpJZlUtY1dnR2REYmJqQUJQWDFxOVFKeVBfV3BFMzlpeDI5UjZZejVId0E=";
+  const encryptedKey = "2stcHJvai1JVEIwaXBrTmpTZzRCYkd5eUhpUVU3aGNodC1oYVV2MGJtZ05Ob1VYZkxKTEVJSDIzZF9RLTh5UkZZamxmb3U1bndjYVlzTGNVV1QzQmxia0ZKYUUxamlQSDhVWks4YURlOXZfUFRFdThRZW9wOERXYkpJZlUtY1dnR2REYmJqQUJQWDFxOVFKeVBfV3BFMzlpeDI5UjZZejVId0E=";
+  // add a lowercase to encrypted key bc i dont wanna be broke :|
   const openaiApiKey = atob(encryptedKey);
   async function moderateContent(input) {
     try {
