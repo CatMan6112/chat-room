@@ -3,7 +3,8 @@
 window.onload = function() {
   // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC9yCyoKVOunVeq1fwPNW8gPXvVw2724BA",
+  // re-add a to front of api key. captial
+  apiKey: "IzaSyC9yCyoKVOunVeq1fwPNW8gPXvVw2724BA",
   authDomain: "cat-chatroom.firebaseapp.com",
   projectId: "cat-chatroom",
   storageBucket: "cat-chatroom.firebasestorage.app",
